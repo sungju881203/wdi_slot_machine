@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="game.js"></script>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<header>
+  <nav>
+    <h1>WDI SLOT MACHINE</h1>
+  </nav>
+  <!--<h1>Add options</h1>-->
+  <!--<ul id="option">-->
+  <!--</ul>-->
+  <h3>Spinning options</h3>
+  <ul id="spinning">
+  </ul>
+</header>
+<main>
+  <h2>SLOT</h2>
+  <section class="box">
+    <div id="box1">
+      <img id="item1" src="src/rs_liza.jpg" alt="">
+    </div>
+    <div id="box2">
+      <img id="item2" src="src/rs_ethan.jpg" alt="">
+    </div>
+    <div id="box3">
+      <img id="item3" src="src/rs_syed.jpg" alt="">
+    </div>
+  </section>
+  <div id="button">
+    <button id="spin-btn" onclick="startSpin()">SPIN</button>
+    <button id="stop-btn" onclick="stopSpin()" hidden>STOP</button>
+  </div>
+  <section class="score">
+    <h3>win count:</h3>
+  </section>
+</main>
+</body>
+</html>
