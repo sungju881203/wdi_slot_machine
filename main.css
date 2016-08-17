@@ -20,7 +20,9 @@ li {
     border: solid 2px black;
     justify-content: center;
     align-content: flex-end;
-    margin: 45px 213.5px;
+    margin: auto;
+    margin-top: 45px;
+    margin-bottom: 45px;
 }
 button {
     border: none;
