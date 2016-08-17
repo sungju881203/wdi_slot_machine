@@ -1,40 +1,88 @@
 /**
  * Created by Macbook on 6/27/16.
  */
+
 //options
-var optionsArr = ["harry", "dan", "mimi", "trump", "obama"];
-var spinArr = ["ethan", "liza", "syed"];
-var imgArr = ["src/rs_ethan.jpg", "src/rs_liza.jpg", "src/rs_syed.jpg"];
-var item = ["item1", "item2", "item3"];
-var interval;
-var slot1Arr = imgArr;
-var slot2Arr = imgArr;
-var slot3Arr = imgArr;
-// var win = 0;
-// var x = -1;
+const spinArr = ["ethan", "liza", "syed"];
+const imgArr = ["src/rs_ethan.jpg", "src/rs_liza.jpg", "src/rs_syed.jpg"];
+const item = ["item1", "item2", "item3"];
+let counter = 0;
+let interval;
 
 //start displaying
-addEventListener("DOMContentLoaded", displayOptions);
+document.addEventListener("DOMContentLoaded", displayOptions);
 
 //display function
 function displayOptions() {
-    var option = document.getElementById("option");
-    var spinning = document.getElementById("spinning");
-    // for (i = 0; i < optionsArr.length; i++) {
-    //     var li = document.createElement("li");
-    //     var liContent = document.createTextNode(optionsArr[i]);
-    //     li.appendChild(liContent);
-    //     option.appendChild(li);
-    // }
-    for (i = 0; i < spinArr.length; i++) {
-        var li = document.createElement("li");
-        var liContent = document.createTextNode(spinArr[i]);
+    const option = document.getElementById("option");
+    const spinning = document.getElementById("spinning");
+    for (let i = 0; i < spinArr.length; i++) {
+        const li = document.createElement("li");
+        const liContent = document.createTextNode(spinArr[i]);
         li.appendChild(liContent);
         spinning.appendChild(li);
     }
+    const counterSpan = document.getElementById("counter");
+    counterSpan.innerHTML = counter;
 }
 
-// //method 1
+// method 1
+function randomImage() {
+    const randomIndex = Math.floor(Math.random() * imgArr.length);
+    console.log(imgArr[randomIndex]);
+    return imgArr[randomIndex];
+}
+
+function spin() {
+    const item1 = document.getElementById("item1");
+    item1.src = randomImage();
+    const item2 = document.getElementById("item2");
+    item2.src = randomImage();
+    const item3 = document.getElementById("item3");
+    item3.src = randomImage();
+}
+
+//spin button onclick
+function startSpin() {
+    interval = setInterval(spin, 100);
+    const spinBtn = document.getElementById("spin-btn");
+    const stopBtn = document.getElementById("stop-btn");
+    spinBtn.setAttribute("hidden", true);
+    stopBtn.removeAttribute("hidden");
+}
+
+// increase jackpot counter & popup modal
+function jackpot() {
+    const counterSpan = document.getElementById("counter");
+    const modalDiv = document.querySelector(".modal");
+    counter++;
+    counterSpan.innerHTML = counter;
+    console.log(counter);
+    modalDiv.style.display = "block";
+}
+
+function closeModal() {
+    const modalDiv = document.querySelector(".modal");
+    modalDiv.style.display = "none";
+}
+
+//stop button onclick
+function stopSpin() {
+    clearInterval(interval);
+    const spinBtn = document.getElementById("spin-btn");
+    const stopBtn = document.getElementById("stop-btn");
+    stopBtn.setAttribute("hidden", true);
+    spinBtn.removeAttribute("hidden");
+    console.info(item1.src);
+    console.info(item2.src);
+    console.info(item3.src);
+    if (item1.src == item2.src && item2.src ==item3.src) {
+        jackpot();
+    }
+}
+
+
+// //method 2
 // function displayNextImage() {
 //     x = (x === imgArr.length - 1) ? 0 : x + 1;
 //     document.getElementById("item1").src = imgArr[x];
@@ -53,7 +101,7 @@ function displayOptions() {
 //
 // }
 
-// method 2
+// method 3
 // function spin1() {
 //     slot1Arr.push(slot1Arr.shift());
 //     return slot1Arr;
@@ -82,7 +130,7 @@ function displayOptions() {
 //     clearInterval(spin1())
 // }
 
-// // method 3
+// // method 4
 // function run1() {
 //     for (i = 0; i < 3; i++) {
 //         var item1 = document.querySelectorAll(".item1");
@@ -116,37 +164,3 @@ function displayOptions() {
 //     }
 // }
 //
-
-// method 4
-function random() {
-    var randomIndex = Math.floor(Math.random() * imgArr.length);
-    console.log(imgArr[randomIndex]);
-    return imgArr[randomIndex];
-}
-
-function spin() {
-    var item1 = document.getElementById("item1");
-    item1.src = random();
-    var item2 = document.getElementById("item2");
-    item2.src = random();
-    var item3 = document.getElementById("item3");
-    item3.src = random();
-}
-
-//spin button onclick
-function startSpin() {
-    interval = setInterval(spin, 100);
-    var spinBtn = document.getElementById("spin-btn");
-    var stopBtn = document.getElementById("stop-btn");
-    spinBtn.setAttribute("hidden", true);
-    stopBtn.removeAttribute("hidden");
-}
-
-//stop button onclick
-function stopSpin() {
-    clearInterval(interval);
-    var spinBtn = document.getElementById("spin-btn");
-    var stopBtn = document.getElementById("stop-btn");
-    stopBtn.setAttribute("hidden", true);
-    spinBtn.removeAttribute("hidden");
-}
