@@ -15,8 +15,8 @@
 ##How to play
 
 ###Manual
-This is a simple slot machine game with GA instructor's faces.
-Click spin button to play
+ This is a simple slot machine game with GA instructors' faces.  
+Click spin button to play  
 Click stop button to stop the spin
 
 ##How it works
